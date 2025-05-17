@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import classes from "./SingleQuestion.module.css";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+
 
 function SingleQuestion() {
-  const { id } = useParams(); // Get the question ID from the URL
-  const [question, setQuestion] = useState(null); // State to store question details
-  const [answers, setAnswers] = useState([]); // State to store answers
-  const [newAnswer, setNewAnswer] = useState(""); // State to store the new answer
+  const { id } = useParams(); 
+  const [question, setQuestion] = useState(null); 
+  const [answers, setAnswers] = useState([]); 
+  const [newAnswer, setNewAnswer] = useState(""); 
 
   useEffect(() => {
     async function fetchQuestion() {
       try {
-        const token = localStorage.getItem("token"); // Retrieve token from localStorage
-        const response = await axios.get(`/question/${id}`, {
+        const token = localStorage.getItem("token"); 
+        const response = await axios.get(`/question/questions/${id}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token in headers
+            Authorization: `Bearer ${token}`, 
           },
         });
         if (response.status === 200) {
-          setQuestion(response.data); // Set the fetched question to state
+          setQuestion(response.data); 
         }
       } catch (error) {
         console.error("Error fetching question:", error.message);
@@ -28,14 +30,14 @@ function SingleQuestion() {
 
     async function fetchAnswers() {
       try {
-        const token = localStorage.getItem("token"); // Retrieve token from localStorage
-        const response = await axios.get(`/answer/${id}`, {
+        const token = localStorage.getItem("token"); 
+        const response = await axios.get(`/answer/answers/${id}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token in headers
+            Authorization: `Bearer ${token}`, 
           },
         });
         if (response.status === 200) {
-          setAnswers(response.data); // Set the fetched answers to state
+          setAnswers(response.data); 
         }
       } catch (error) {
         console.error("Error fetching answers:", error.message);
@@ -47,25 +49,25 @@ function SingleQuestion() {
   }, [id]);
 
   const handleAnswerSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault(); 
     try {
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      const token = localStorage.getItem("token"); 
       const response = await axios.post(
         `/answer/${id}`,
-        { answer: newAnswer }, // Send the new answer in the request body
+        { answer: newAnswer }, 
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token in headers
+            Authorization: `Bearer ${token}`, 
           },
         }
       );
       if (response.status === 201) {
         alert("Answer posted successfully!");
-        setNewAnswer(""); // Clear the input field
+        setNewAnswer(""); 
         setAnswers((prevAnswers) => [
           ...prevAnswers,
           { answer: newAnswer, username: "You" },
-        ]); // Update the answers list
+        ]); 
       }
     } catch (error) {
       console.error("Error posting answer:", error.message);
@@ -80,6 +82,10 @@ function SingleQuestion() {
   return (
     <section className={classes.single_question}>
         <div className={classes.title}>
+          <Link to="/"><button>
+            <MdOutlineKeyboardArrowLeft size={35} />
+            Back
+            </button></Link>
           <h1>{question?.title}</h1>
           <h4>{question?.description}</h4>
         </div>

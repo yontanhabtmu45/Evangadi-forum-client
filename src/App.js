@@ -13,14 +13,14 @@ import AskQuestion from "./pages/askQuestion";
 function App() {
   const [user, setUser] = useState({});
 
-  const token = localStorage.getItem("token");
   const Navigate = useNavigate();
-
+  
   async function checkUser() {
     try {
-      const { data } = await axios.get("/users/check", {
+      const token = localStorage.getItem("token");
+      const  data  = await axios.get("/users/check", {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: `Bearer ${token}`,
         },
       });
       setUser(data);
@@ -42,7 +42,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/ask-question" element={<AskQuestion/>}/>
-        <Route path="/answer/:id" element={<SingleQuestion/>}/>
+        <Route path="/question/questions/:id" element={<SingleQuestion/>}/>
       </Routes>
     </AppState.Provider>
   );

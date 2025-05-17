@@ -19,22 +19,22 @@ function Home() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        })
+        });
         setUser(response.data);
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
 
     async function getQuestions() {
       try {
-        const token = localStorage.getItem("token"); 
+        const token = localStorage.getItem("token");
         const response = await axios.get("/question/all-questions", {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         });
-        setQuestions(response.data); 
+        setQuestions(response.data);
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -45,46 +45,52 @@ function Home() {
   }, []);
 
   return (
-    <section className={classes.question_wrapper}>
-      <div className={classes.header_wrapper}>
-        <Link to="/ask-question">
-          <button>Ask Question</button>
-        </Link>
-        <div>
-          <h2>
-            Welcome: <span>{user?.username || "Guest"}</span>
-          </h2>
-        </div>
+    <section >
+      <div className={classes.logo_wrapper}>
+        <h1>Legends Q&A</h1>
+        <p>Ask and answer questions</p>
       </div>
-      <div className={classes.all_questions_wrapper}>
-        <div>
-          <h1>Questions</h1>
-          <hr />
+      <div className={classes.question_wrapper}>
+        <div className={classes.header_wrapper}>
+          <Link to="/ask-question">
+            <button>Ask Question</button>
+          </Link>
+          <div>
+            <h2>
+              Welcome: <span>{user?.username || "Guest"}</span>
+            </h2>
+          </div>
         </div>
-        <div className={classes.questions_list}>
-          {questions.length > 0 ? (
-            questions
-              .sort((a, b) => {
-                return b.id - a.id;
-              })
-              .map((question) => (
-                <Link to={`/answer/${question.id}`} key={question.id}>
-                  <div key={question.id} className={classes.question_item}>
-                    <div>
-                      <FaUserCircle size={68} />
-                      <p>
-                        <strong>{question?.username}</strong>
-                        <h4>{question?.title}</h4>
-                        {/* <p>{question?.description}</p> */}
-                      </p>
-                      <FaChevronRight size={25} />
+        <div className={classes.all_questions_wrapper}>
+          <div>
+            <h1>Questions</h1>
+            <hr />
+          </div>
+          <div className={classes.questions_list}>
+            {questions.length > 0 ? (
+              questions
+                .sort((a, b) => {
+                  return b.id - a.id;
+                })
+                .map((question) => (
+                  <Link to={`/question/questions/${question.questionid}`} key={question.questionid}>
+                    <div key={question.questionid} className={classes.question_item}>
+                      <div>
+                        <FaUserCircle size={68} />
+                        <p>
+                          <strong>{question?.username}</strong>
+                          <h4>{question?.title}</h4>
+                          {/* <p>{question?.description}</p> */}
+                        </p>
+                        <FaChevronRight size={25} />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))
-          ) : (
-            <p>No questions available</p>
-          )}
+                  </Link>
+                ))
+            ) : (
+              <p>No questions available</p>
+            )}
+          </div>
         </div>
       </div>
     </section>
