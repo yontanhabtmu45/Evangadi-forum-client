@@ -1,3 +1,16 @@
+.ask_question button {
+    background: #fff;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
 .ask_question form {
     text-align: center;
     display: flex;

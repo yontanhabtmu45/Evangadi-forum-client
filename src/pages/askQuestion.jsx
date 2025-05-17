@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "../axiosConfig";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./askQuestion.module.css";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+
 
 function AskQuestion() {
   const [title, setTitle] = useState("");
@@ -34,6 +36,10 @@ function AskQuestion() {
 
   return (
     <section className={classes.ask_question}>
+      <Link to="/"><button>
+            <MdOutlineKeyboardArrowLeft size={35} />
+            Back
+            </button></Link>
       <form onSubmit={handleSubmit}>
         <h1>Ask a Question</h1>
         <div>

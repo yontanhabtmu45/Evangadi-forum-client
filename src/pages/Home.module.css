@@ -93,6 +93,9 @@
         padding: 12px 0;
         gap: 8px;
     }
+    .question_item div svg:last-child {
+        display: none;
+    }
     .user_icon_mobile {
         font-size: 36px !important;
     }
