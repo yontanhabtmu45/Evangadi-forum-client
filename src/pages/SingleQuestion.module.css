@@ -73,3 +73,47 @@ form button:active {
     background: #6bbaf7;
     color: #fff;
 }
+
+@media (max-width: 600px) {
+    .question_wrap {
+        margin: 0.5rem;
+    }
+    .single_question .title {
+        padding: 8px 8px;
+    }
+    .single_question .title h1 {
+        font-size: 1.2rem;
+    }
+    .single_question h4,
+    .single_question h2 {
+        font-size: 1rem;
+    }
+    .single_question .answers {
+        padding: .3rem 0.5rem;
+        font-size: 1rem;
+    }
+    .single_question .tag {
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.9rem;
+    }
+    .single_question .tag p {
+        font-size: 0.9rem;
+        padding: 2px 6px;
+    }
+    form {
+        padding: 12px 2px;
+        margin-top: 12px;
+    }
+    form textarea {
+        width: 98%;
+        height: 120px;
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+    form button {
+        width: 100%;
+        font-size: 1rem;
+        padding: .5rem 1rem;
+    }
+}

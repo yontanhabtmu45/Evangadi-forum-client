@@ -90,3 +90,37 @@
 .register_wrapper form .other input{
     width: 100%;
 }
+
+@media (max-width: 600px) {
+    .register_wrapper {
+        padding: 0 8px;
+        height: auto;
+        min-height: 100vh;
+    }
+    .register_wrapper form {
+        padding: 1rem;
+        margin: 1rem 0.5rem;
+    }
+    .register_wrapper form > div {
+        gap: 0.5rem;
+    }
+    .register_wrapper form span,
+    .register_wrapper .name_wrapper span {
+        font-size: 1rem;
+    }
+    .register_wrapper .name_wrapper {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .register_wrapper .name_wrapper input,
+    .register_wrapper form input {
+        font-size: 1rem;
+        padding: 0.4rem;
+        height: 1.2rem;
+    }
+    .register_wrapper form button {
+        width: 100%;
+        font-size: 1rem;
+        padding: .5rem 1rem;
+    }
+}

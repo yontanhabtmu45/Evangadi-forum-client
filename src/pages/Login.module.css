@@ -58,3 +58,32 @@
 .login_wrapper form a:hover {
     color: #fff;
 }
+
+@media (max-width: 600px) {
+    .login_wrapper {
+        padding: 0 8px;
+        height: auto;
+        min-height: 100vh;
+    }
+    .login_wrapper form {
+        padding: 1rem;
+        margin: 1rem 0.5rem;
+    }
+    .login_wrapper form > div {
+        gap: 0.5rem;
+    }
+    .login_wrapper form span {
+        font-size: 1rem;
+    }
+    .login_wrapper form input {
+        font-size: 1rem;
+        padding: 0.4rem;
+        height: 1.2rem;
+    }
+    .login_wrapper form button {
+        width: 100%;
+        font-size: 1rem;
+        padding: .5rem 1rem;
+        margin: 1rem 0;
+    }
+}
