@@ -12,36 +12,36 @@ function Home() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    // async function getUser() {
-    //   try {
-    //     const token = localStorage.getItem("token");
-    //     const response = await axios.get("/users/me", {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     })
-    //     setUser(response.data);
-    //   } catch (error) {
-    //     console.log(error.message)
-    //   }
-    // }
+    async function getUser() {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/users/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        setUser(response.data);
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
 
     async function getQuestions() {
       try {
-        const token = localStorage.getItem("token"); // Retrieve the token from localStorage
+        const token = localStorage.getItem("token"); 
         const response = await axios.get("/question/all-questions", {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the request headers
+            Authorization: `Bearer ${token}`, 
           },
         });
-        setQuestions(response.data); // Set the fetched questions to state
+        setQuestions(response.data); 
         console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     }
     getQuestions();
-    // getUser();
+    getUser();
   }, []);
 
   return (
